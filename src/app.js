@@ -9,6 +9,9 @@ const errorHandler = require('./middlewares/errorHandler');
 
 const app = express();
 
+// Razorpay webhook must receive raw body for signature verification
+app.use('/api/payments/webhook', express.raw({ type: '*/*' }));
+
 app.use(express.json());
 app.use(cors());
 app.use(helmet());
